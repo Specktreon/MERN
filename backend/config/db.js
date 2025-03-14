@@ -1,14 +1,25 @@
 import mongoose from "mongoose";
 
-export const connectDB = async () => {
+const connectDB = async () => {
   try {
-    console.log(process.env.MONGO_URI);
-    console.log("Attempting to connect to MongoDB...");
-    const conn = mongoose.connect(process.env.MONGO_URI);
-
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
+    await mongoose.connect("mongodb://127.0.0.1:27017/express", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB Connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
     process.exit(1);
   }
 };
+
+export default connectDB;
+//   try {
+//     mongoose.connect('mongodb://localhost/MERN',
+//          { useNewUrlParser: true, useUnifiedTopology: true });
+
+//     console.log(`MongoDB Connected: ${conn.connection.host}`);
+//   } catch (error) {
+//     console.error(`Error: ${error.message}`);
+//     process.exit(1);
+//   }
