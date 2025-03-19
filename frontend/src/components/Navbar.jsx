@@ -12,7 +12,16 @@ const Navbar = () => {
           base: "column",
           sm: "row",
         }}
-      ></Flex>
+      >
+        <Text
+          bgGradient="linear(to-l, #7928CA, #FF0080)"
+          bgClip="text"
+          fontSize="6xl"
+          fontWeight="extrabold"
+        >
+          Welcome to Chakra UI
+        </Text>
+      </Flex>
     </Container>
   );
 };
