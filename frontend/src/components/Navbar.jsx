@@ -14,12 +14,14 @@ const Navbar = () => {
         }}
       >
         <Text
-          bgGradient="linear(to-l, #7928CA, #FF0080)"
-          bgClip="text"
-          fontSize="6xl"
-          fontWeight="extrabold"
+          fontSize={{ base: "22", sm: "28" }}
+          fontWeight={"bold"}
+          textTransform={"uppercase"}
+          textAlign={"center"}
+          bgGradient={"linear(to-r, cyan.400, blue.500)"}
+          bgClip={"text"}
         >
-          Welcome to Chakra UI
+          <Link to={"/"}>Product Store 🛒</Link>
         </Text>
       </Flex>
     </Container>
