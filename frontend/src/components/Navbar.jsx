@@ -1,4 +1,5 @@
-import { Container, Flex } from "@chakra-ui/react";
+import { Container, Flex, HStack, Text, Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import React from "react";
 
 const Navbar = () => {
@@ -23,6 +24,10 @@ const Navbar = () => {
         >
           <Link to={"/"}>Product Store 🛒</Link>
         </Text>
+
+        <HStack spaceing={2} alignItems={"center"}>
+          <Button></Button>
+        </HStack>
       </Flex>
     </Container>
   );
