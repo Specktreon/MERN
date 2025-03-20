@@ -5,7 +5,6 @@ import {
   Text,
   Button,
   useColorMode,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import React from "react";
@@ -16,11 +15,7 @@ import { LuSun } from "react-icons/lu";
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Container
-      maxW={"1140px"}
-      px={4}
-      bg={useColorModeValue("gray.100", "gray.900")}
-    >
+    <Container maxW={"1140px"} px={4}>
       <Flex
         h={16}
         alignItems={"center"}
