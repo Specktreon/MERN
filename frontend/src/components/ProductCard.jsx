@@ -2,23 +2,24 @@ import React from "react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
   Heading,
   HStack,
   IconButton,
   Image,
-  Text,
   Input,
-  useColorModeValue,
-  useToast,
-  useDisclosure,
   Modal,
-  VStack,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  // ModalFooter,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+  useToast,
+  VStack,
 } from "@chakra-ui/react";
 import { useProductStore } from "@/store/product";
 
@@ -129,6 +130,19 @@ const ProductCard = ({ product }) => {
                 />
               </VStack>
             </ModalBody>
+
+            <ModalFooter>
+              <Button
+                colorScheme="blue"
+                mr={3}
+                // onClick={() => handleUpdateProduct(product._id, updatedProduct)}
+              >
+                Update
+              </Button>
+              <Button variant="ghost" onClick={onClose}>
+                Cancel
+              </Button>
+            </ModalFooter>
           </ModalContent>
         </ModalOverlay>
       </Modal>
