@@ -29,7 +29,7 @@ const ProductCard = ({ product }) => {
   const textColor = useColorModeValue("gray.600", "gray.200");
   const bg = useColorModeValue("white", "gray.800");
 
-  const { deleteProduct } = useProductStore();
+  const { deleteProduct, updateProduct } = useProductStore();
   const toast = useToast();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -122,35 +122,35 @@ const ProductCard = ({ product }) => {
                   placeholder="Product Name"
                   name="name"
                   value={updatedProduct.name}
-                  // onChange={(e) =>
-                  //   setUpdatedProduct({
-                  //     ...updatedProduct,
-                  //     name: e.target.value,
-                  //   })
-                  // }
+                  onChange={(e) =>
+                    setUpdatedProduct({
+                      ...updatedProduct,
+                      name: e.target.value,
+                    })
+                  }
                 />
                 <Input
                   placeholder="Price"
                   name="price"
                   type="number"
                   value={updatedProduct.price}
-                  // onChange={(e) =>
-                  //   setUpdatedProduct({
-                  //     ...updatedProduct,
-                  //     price: e.target.value,
-                  //   })
-                  // }
+                  onChange={(e) =>
+                    setUpdatedProduct({
+                      ...updatedProduct,
+                      price: e.target.value,
+                    })
+                  }
                 />
                 <Input
                   placeholder="Image URL"
                   name="image"
                   value={updatedProduct.image}
-                  // onChange={(e) =>
-                  //   setUpdatedProduct({
-                  //     ...updatedProduct,
-                  //     image: e.target.value,
-                  //   })
-                  // }
+                  onChange={(e) =>
+                    setUpdatedProduct({
+                      ...updatedProduct,
+                      image: e.target.value,
+                    })
+                  }
                 />
               </VStack>
             </ModalBody>
