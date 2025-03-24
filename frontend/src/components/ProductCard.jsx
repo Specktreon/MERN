@@ -22,8 +22,10 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useProductStore } from "@/store/product";
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
+  const [updatedProduct, setUpdatedProduct] = useState(product);
   const textColor = useColorModeValue("gray.600", "gray.200");
   const bg = useColorModeValue("white", "gray.800");
 
@@ -97,7 +99,7 @@ const ProductCard = ({ product }) => {
                 <Input
                   placeholder="Product Name"
                   name="name"
-                  // value={updatedProduct.name}
+                  value={updatedProduct.name}
                   // onChange={(e) =>
                   //   setUpdatedProduct({
                   //     ...updatedProduct,
@@ -109,7 +111,7 @@ const ProductCard = ({ product }) => {
                   placeholder="Price"
                   name="price"
                   type="number"
-                  // value={updatedProduct.price}
+                  value={updatedProduct.price}
                   // onChange={(e) =>
                   //   setUpdatedProduct({
                   //     ...updatedProduct,
@@ -120,7 +122,7 @@ const ProductCard = ({ product }) => {
                 <Input
                   placeholder="Image URL"
                   name="image"
-                  // value={updatedProduct.image}
+                  value={updatedProduct.image}
                   // onChange={(e) =>
                   //   setUpdatedProduct({
                   //     ...updatedProduct,
