@@ -2,8 +2,10 @@ import Product from "../models/product.model.js";
 import mongoose from "mongoose";
 
 export const getProducts = async (req, res) => {
+  const userId = req.user.userId;
+
   try {
-    const products = await Product.find({});
+    const products = await Product.find({ user: userId });
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.log("error in fetching products:", error.message);
@@ -13,6 +15,7 @@ export const getProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   const product = req.body;
+  const userId = req.user.userId;
 
   if (!product.name || !product.price || !product.image) {
     return res
@@ -20,10 +23,10 @@ export const createProduct = async (req, res) => {
       .json({ success: false, message: "Please provide all fields" });
   }
 
-  const newProduct = new Product(product);
+  const newProduct = new Product({ ...product, user: userId });
 
   try {
-    newProduct.save();
+    await newProduct.save();
     res.status(201).json({ success: true, data: newProduct });
   } catch (error) {
     console.error({ "Error in Create product:": error.message });
