@@ -26,6 +26,7 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({ token });
   } catch (err) {
+    console.error("Error:", err); // Add this to log the error on the server
     res.status(500).json({ error: err.message });
   }
 };
@@ -51,6 +52,8 @@ export const loginUser = async (req, res) => {
 
     res.json({ token });
   } catch (err) {
+    console.error("Error:", err); // Add this to log the error on the server
     res.status(500).json({ error: err.message });
   }
+  console.log("JWT_SECRET:", process.env.JWT_SECRET); // Log the secret to confirm it's available
 };
