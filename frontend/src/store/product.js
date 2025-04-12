@@ -1,9 +1,12 @@
 import { create } from "zustand";
+import axios from "axios";
 
 export const useProductStore = create((set) => ({
   products: [],
   setProducts: (products) => set({ products }),
   createProduct: async (newProduct) => {
+    const token = localStorage.getItem("token");
+
     if (!newProduct.name || !newProduct.image || !newProduct.price) {
       return { success: false, message: "Please fill in all fields." };
     }
@@ -11,6 +14,7 @@ export const useProductStore = create((set) => ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify(newProduct),
     });
@@ -19,15 +23,36 @@ export const useProductStore = create((set) => ({
     return { success: true, message: "Product created successfully." };
   },
 
+  // fetchProducts: async () => {
+  //   const res = await fetch("/api/products");
+  //   const data = await res.json();
+  //   set({ products: data.data });
+  // },
+
   fetchProducts: async () => {
-    const res = await fetch("/api/products");
-    const data = await res.json();
-    set({ products: data.data });
+    const token = localStorage.getItem("authToken");
+
+    try {
+      const res = await axios.get("/api/products", {
+        headers: {
+          Authorization: `Bearer ${token}`, // ✅ Add Bearer prefix
+        },
+      });
+
+      set({ products: res.data.data });
+    } catch (err) {
+      console.error(err.response?.data?.message || "Fetch products error");
+    }
   },
 
   deleteProduct: async (pid) => {
+    const token = localStorage.getItem("token");
+
     const res = await fetch(`/api/products/${pid}`, {
       method: "DELETE",
+      headers: {
+        Authorization: token,
+      },
     });
     const data = await res.json();
     if (!data.success) return { success: false, message: data.message };
@@ -38,10 +63,13 @@ export const useProductStore = create((set) => ({
   },
 
   updateProduct: async (pid, updatedProduct) => {
+    const token = localStorage.getItem("token");
+
     const res = await fetch(`/api/products/${pid}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify(updatedProduct),
     });
