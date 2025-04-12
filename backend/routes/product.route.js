@@ -1,5 +1,5 @@
 import express from "express";
-
+import authMiddleware from "../middleware/authMiddleware.js";
 import {
   createProduct,
   deleteProduct,
@@ -9,16 +9,9 @@ import {
 
 const router = express.Router();
 
-// get all products
-router.get("/", getProducts);
-
-//add a product
-router.post("/", createProduct);
-
-//update a product
-router.put("/:id", updateProduct);
-
-//delete a product
-router.delete("/:id", deleteProduct);
+router.get("/", authMiddleware, getProducts); // Get all products
+router.post("/", authMiddleware, createProduct); // Add a product
+router.put("/:id", authMiddleware, updateProduct); // Update a product
+router.delete("/:id", authMiddleware, deleteProduct); // Delete a product
 
 export default router;
